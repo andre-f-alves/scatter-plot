@@ -7,6 +7,7 @@
 }
 
 header {
+  margin: 10px;
   text-align: center;
 }
 
@@ -14,7 +15,7 @@ h1 {
   margin: 0;
 }
 
-header > p {
+.subtitle {
   margin: 0;
   font-size: 1.3em;
 }

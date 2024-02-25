@@ -70,7 +70,7 @@ import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7/+esm'
     .classed('dot', true)
     .attr('cx', (d) => xScale(new Date(d['Year'], 0)))
     .attr('cy', (d) => yScale(dateTimeFormat(d['Time'])))
-    .attr('r', 4)
+    .attr('r', 5)
     .attr('data-xvalue', (d) => d['Year'])
     .attr('data-yvalue', (d) => dateTimeFormat(d['Time']).toISOString())
     .attr('fill', (d) => d['Doping'] ? blue : orange)
@@ -103,7 +103,7 @@ function createColorLegend(svgElement, colors, legends, x, y) {
     const label = legend
       .append('g')
       .classed('label', true)
-      .attr('transform', `translate(0, ${index * 30})`)
+      .attr('transform', `translate(0, ${index * 20})`)
     
     label
       .append('rect')
@@ -126,8 +126,8 @@ function activateTooltip(data, x, y, color) {
     .select('#tooltip')
     .classed('active', true)
     .attr('data-year', data['Year'])
-    .style('left', x + 'px')
-    .style('top', y - 30 + 'px')
+    .style('left', x + 10 + 'px')
+    .style('top', y - 20 + 'px')
     .style('background-color', color)
     .html(`
       <p>
