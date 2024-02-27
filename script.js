@@ -76,7 +76,9 @@ import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7/+esm'
     .attr('fill', (d) => d['Doping'] ? blue : orange)
   
   plots.on('mouseover', (event, d) => {
-    activateTooltip(d, event.pageX, event.pageY, d['Doping'] ? blue : orange)
+    const [ x, y ] = d3.pointer(event, svg)
+    const color = d['Doping'] ? blue : orange
+    activateTooltip(d, x, y, color)
   })
 
   plots.on('mouseout', () => deactivateTooltip())
@@ -122,12 +124,14 @@ function createColorLegend(svgElement, colors, legends, x, y) {
 }
 
 function activateTooltip(data, x, y, color) {
+  const position = x >= innerWidth / 2 ? 'calc(-100% - 10px)' : '10px'
   d3
     .select('#tooltip')
     .classed('active', true)
     .attr('data-year', data['Year'])
-    .style('left', x + 10 + 'px')
-    .style('top', y - 20 + 'px')
+    .style('left', x + 'px')
+    .style('top', y + 'px')
+    .style('transform', `translate(${position}, -50%)`)
     .style('background-color', color)
     .html(`
       <p>
